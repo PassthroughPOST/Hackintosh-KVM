@@ -41,9 +41,6 @@ or other application using the libvirt API.
     <hap state='on'/>
     <vmport state='off'/>
   </features>
-  <cpu mode='host-model' check='partial'>
-    <model fallback='allow'/>
-  </cpu>
   <clock offset='utc'>
     <timer name='rtc' tickpolicy='catchup'/>
     <timer name='pit' tickpolicy='delay'/>
@@ -139,7 +136,7 @@ or other application using the libvirt API.
   </devices>
   <qemu:commandline>
     <qemu:arg value='-cpu'/>
-    <qemu:arg value='EPYC-IBPB,vendor=GenuineIntel,kvm=on,topoext=on,vmware-cpuid-freq=on,+hypervisor,+invtsc,+smep'/>
+    <qemu:arg value='host,vendor=GenuineIntel,kvm=on,topoext=on,vmware-cpuid-freq=on,+invtsc'/>
     <qemu:arg value='-object'/>
     <qemu:arg value='input-linux,id=mouse2,evdev=/dev/input/by-id/usb-Logitech_Gaming_Mouse_G302_0B7E36773938-if01-event-kbd'/>
     <qemu:arg value='-object'/>
@@ -151,7 +148,7 @@ or other application using the libvirt API.
     <qemu:arg value='-smbios'/>
     <qemu:arg value='type=2'/>
     <qemu:arg value='-smbios'/>
-    <qemu:arg value='type=17,speed=2133,serial=SRH-0000000,part=OSX-2133MHZ'/>
+    <qemu:arg value='type=17,speed=3066,serial=SRH-0000000,part=OSX-3066MHZ'/>
     <qemu:arg value='-set'/>
     <qemu:arg value='device.net0.vectors=0'/>
     <qemu:env name='QEMU_AUDIO_DRV' value='pa'/>
