@@ -10,10 +10,6 @@ or other application using the libvirt API.
   <uuid>cea8167c-7ba9-4af5-98c2-e482cb372bdc</uuid>
   <memory unit='KiB'>8390656</memory>
   <currentMemory unit='KiB'>8390656</currentMemory>
-  <memoryBacking>
-    <nosharepages/>
-    <locked/>
-  </memoryBacking>
   <vcpu placement='static'>10</vcpu>
   <cputune>
     <vcpupin vcpu='0' cpuset='2'/>
@@ -51,31 +47,11 @@ or other application using the libvirt API.
   <on_reboot>restart</on_reboot>
   <on_crash>destroy</on_crash>
   <pm>
-    <suspend-to-mem enabled='yes'/>
-    <suspend-to-disk enabled='yes'/>
+    <suspend-to-mem enabled='no'/>
+    <suspend-to-disk enabled='no'/>
   </pm>
   <devices>
     <emulator>/usr/bin/qemu-system-x86_64</emulator>
-    <disk type='block' device='disk'>
-      <driver name='qemu' type='raw' cache='writeback' io='threads'/>
-      <source dev='/dev/VolGroup00/osx'/>
-      <target dev='sda' bus='sata'/>
-      <boot order='1'/>
-      <address type='drive' controller='0' bus='0' target='0' unit='0'/>
-    </disk>
-    <disk type='block' device='disk'>
-      <driver name='qemu' type='raw' cache='writeback' io='threads'/>
-      <source dev='/dev/VolGroup00/osx2'/>
-      <target dev='sdb' bus='sata'/>
-      <address type='drive' controller='0' bus='0' target='0' unit='1'/>
-    </disk>
-    <disk type='file' device='cdrom'>
-      <driver name='qemu' type='raw'/>
-      <source file='/home/srh/Documents/OSX-KVM/HighSierra.iso'/>
-      <target dev='sdc' bus='sata'/>
-      <readonly/>
-      <address type='drive' controller='0' bus='0' target='0' unit='2'/>
-    </disk>
     <controller type='pci' index='0' model='pci-root'/>
     <controller type='sata' index='0'>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x04' function='0x0'/>
@@ -136,7 +112,7 @@ or other application using the libvirt API.
   </devices>
   <qemu:commandline>
     <qemu:arg value='-cpu'/>
-    <qemu:arg value='host,vendor=GenuineIntel,kvm=on,topoext=on,vmware-cpuid-freq=on,+invtsc'/>
+    <qemu:arg value='host,vendor=GenuineIntel,kvm=on,topoext=on,vmware-cpuid-freq=on,+invtsc,+hypervisor'/>
     <qemu:arg value='-object'/>
     <qemu:arg value='input-linux,id=mouse2,evdev=/dev/input/by-id/usb-Logitech_Gaming_Mouse_G302_0B7E36773938-if01-event-kbd'/>
     <qemu:arg value='-object'/>
