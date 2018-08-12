@@ -82,32 +82,6 @@ or other application using the libvirt API.
     <sound model='ich9'>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x03' function='0x0'/>
     </sound>
-    <hostdev mode='subsystem' type='pci' managed='yes'>
-      <source>
-        <address domain='0x0000' bus='0x0a' slot='0x00' function='0x0'/>
-      </source>
-      <address type='pci' domain='0x0000' bus='0x00' slot='0x05' function='0x0'/>
-    </hostdev>
-    <hostdev mode='subsystem' type='pci' managed='yes'>
-      <source>
-        <address domain='0x0000' bus='0x0a' slot='0x00' function='0x1'/>
-      </source>
-      <address type='pci' domain='0x0000' bus='0x00' slot='0x06' function='0x0'/>
-    </hostdev>
-    <hostdev mode='subsystem' type='usb' managed='yes'>
-      <source>
-        <vendor id='0x0a5c'/>
-        <product id='0x21e8'/>
-      </source>
-      <address type='usb' bus='0' port='1'/>
-    </hostdev>
-    <hostdev mode='subsystem' type='usb' managed='yes'>
-      <source>
-        <vendor id='0x0bc2'/>
-        <product id='0x2120'/>
-      </source>
-      <address type='usb' bus='0' port='2'/>
-    </hostdev>
     <memballoon model='none'/>
   </devices>
   <qemu:commandline>
