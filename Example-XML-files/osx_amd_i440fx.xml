@@ -1,0 +1,95 @@
+<domain type='kvm' xmlns:qemu='http://libvirt.org/schemas/domain/qemu/1.0'>
+  <name>osx_i440fx</name>
+  <uuid>cea8167c-7ba9-4af5-98c2-e482cb372bdc</uuid>
+  <memory unit='KiB'>8390656</memory>
+  <currentMemory unit='KiB'>8390656</currentMemory>
+  <vcpu placement='static'>8</vcpu>
+  <os>
+    <type arch='x86_64' machine='pc-i440fx-3.1'>hvm</type>
+    <loader readonly='yes' type='pflash'>/home/srh/Documents/OVMF_CODE.fd</loader>
+    <nvram>/var/lib/libvirt/qemu/nvram/osx_VARS.fd</nvram>
+    <bootmenu enable='yes'/>
+  </os>
+  <features>
+    <acpi/>
+    <apic eoi='on'/>
+    <pae/>
+    <hap state='on'/>
+    <vmport state='off'/>
+  </features>
+  <clock offset='utc'>
+    <timer name='rtc' tickpolicy='catchup'/>
+    <timer name='pit' tickpolicy='delay'/>
+    <timer name='hpet' present='yes'/>
+    <timer name='tsc' present='yes'/>
+  </clock>
+  <on_poweroff>destroy</on_poweroff>
+  <on_reboot>restart</on_reboot>
+  <on_crash>destroy</on_crash>
+  <pm>
+    <suspend-to-mem enabled='no'/>
+    <suspend-to-disk enabled='no'/>
+  </pm>
+  <devices>
+    <emulator>/usr/bin/qemu-system-x86_64</emulator>
+    <controller type='pci' index='0' model='pci-root'/>
+    <controller type='sata' index='0'>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x04' function='0x0'/>
+    </controller>
+    <controller type='usb' index='0' model='ich9-ehci1'>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x02' function='0x7'/>
+    </controller>
+    <controller type='usb' index='0' model='ich9-uhci1'>
+      <master startport='0'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x02' function='0x0' multifunction='on'/>
+    </controller>
+    <controller type='usb' index='0' model='ich9-uhci2'>
+      <master startport='2'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x02' function='0x1'/>
+    </controller>
+    <controller type='usb' index='0' model='ich9-uhci3'>
+      <master startport='4'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x02' function='0x2'/>
+    </controller>
+    <interface type='network'>
+      <mac address='52:54:00:d3:0c:fe'/>
+      <source network='default'/>
+      <model type='virtio-net'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x07' function='0x0'/>
+    </interface>
+    <input type='mouse' bus='ps2'/>
+    <input type='keyboard' bus='ps2'/>
+    <sound model='ich9'>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x03' function='0x0'/>
+    </sound>
+    <memballoon model='none'/>
+  </devices>
+  <qemu:commandline>
+    <qemu:arg value='-cpu'/>
+    <qemu:arg value='host,vendor=GenuineIntel,kvm=on,topoext=on,vmware-cpuid-freq=on,+invtsc,+hypervisor'/>
+    <qemu:arg value='-object'/>
+    <qemu:arg value='input-linux,id=mouse2,evdev=/dev/input/by-id/usb-Logitech_Gaming_Mouse_G302_0B7E36773938-if01-event-kbd'/>
+    <qemu:arg value='-object'/>
+    <qemu:arg value='input-linux,id=mouse1,evdev=/dev/input/by-id/usb-Logitech_Gaming_Mouse_G302_0B7E36773938-event-mouse'/>
+    <qemu:arg value='-object'/>
+    <qemu:arg value='input-linux,id=kbd1,evdev=/dev/input/by-id/usb-Ideazon_Merc_Stealth-event-if01'/>
+    <qemu:arg value='-object'/>
+    <qemu:arg value='input-linux,id=kbd2,evdev=/dev/input/by-id/usb-Ideazon_Merc_Stealth-event-kbd,grab_all=on,repeat=on'/>
+    <qemu:arg value='-smbios'/>
+    <qemu:arg value='type=2'/>
+    <qemu:arg value='-smbios'/>
+    <qemu:arg value='type=17,speed=3066,serial=SRH-0000000,part=OSX-3066MHZ'/>
+    <qemu:arg value='-set'/>
+    <qemu:arg value='device.net0.vectors=0'/>
+    <qemu:env name='QEMU_AUDIO_DRV' value='pa'/>
+    <qemu:env name='QEMU_PA_ADJUST_LATENCY_OUT' value='1'/>
+    <qemu:env name='QEMU_PA_SERVER' value='unix:/tmp/pulse-socket'/>
+    <qemu:env name='QEMU_AUDIO_DAC_FIXED_FREQ' value='48000'/>
+    <qemu:env name='QEMU_AUDIO_DAC_TRY_POLL' value='0'/>
+    <qemu:env name='QEMU_AUDIO_ADC_FIXED_FREQ' value='48000'/>
+    <qemu:env name='QEMU_AUDIO_ADC_TRY_POLL' value='0'/>
+    <qemu:env name='QEMU_AUDIO_ADC_FIXED_CHANNELS' value='2'/>
+    <qemu:env name='QEMU_ALSA_DAC_BUFFER_SIZE' value='2048'/>
+    <qemu:env name='QEMU_ALSA_DAC_PERIOD_SIZE' value='1024'/>
+    <qemu:env name='QEMU_AUDIO_TIMER_PERIOD' value='100'/>
+  </qemu:commandline>
