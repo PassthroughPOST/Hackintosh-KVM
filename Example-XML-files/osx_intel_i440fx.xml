@@ -1,5 +1,5 @@
 <domain type='kvm' xmlns:qemu='http://libvirt.org/schemas/domain/qemu/1.0'>
-  <name>osx_i440fx</name>
+  <name>osx_intel_i440fx</name>
   <uuid>cea8167c-7ba9-4af5-98c2-e482cb372bdc</uuid>
   <memory unit='KiB'>8390656</memory>
   <currentMemory unit='KiB'>8390656</currentMemory>
