@@ -93,3 +93,4 @@
     <qemu:env name='QEMU_ALSA_DAC_PERIOD_SIZE' value='1024'/>
     <qemu:env name='QEMU_AUDIO_TIMER_PERIOD' value='100'/>
   </qemu:commandline>
+</domain>
